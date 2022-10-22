@@ -1,0 +1,11 @@
+.activeStyle {
+  color: crimson;
+}
+
+.header a {
+  margin-left: 30px;
+  font-size: 18px;
+}
+.header a:hover {
+  color: crimson;
+}
