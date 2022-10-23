@@ -89,14 +89,13 @@ const Header = () => {
               >
                 Contact
               </NavLink>
-
-              <button className="btn btn-outline btn-accent text-normal ml-9 px-7 py-2">
-                {" "}
-                Login
-              </button>
             </div>
           </div>
           <div className="navbar-end">
+            <button className="btn btn-outline btn-accent text-normal mx-5 px-7  normal-case text-base">
+              {" "}
+              Login
+            </button>
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
