@@ -1,8 +1,10 @@
 import Main from "../../layout/Main";
 import Home from "../../Pages/Home/Home";
+import Hotels from "../../Pages/Hotels/Hotels";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
 import SinglePlace from "../../Pages/SinglePlace/SinglePlace";
+import PrivateRoute from "../PrivateRoutes/PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/hotels",
+        element: (
+          <PrivateRoute>
+            <Hotels></Hotels>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/places/:id",

@@ -1,12 +1,20 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider";
 import toast from "react-hot-toast";
+import { GithubAuthProvider } from "firebase/auth";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, loginWithGoogle, loginWithGithub } =
+    useContext(AuthContext);
   const [error, setError] = useState("");
+
+  const gitHubProvider = new GithubAuthProvider();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,6 +45,7 @@ const Register = () => {
         console.log(user);
         form.reset();
         toast.success("Account Created Successfully");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -44,6 +53,27 @@ const Register = () => {
       });
 
     console.log(name, email, password);
+  };
+  const handleGoogleLogIn = () => {
+    loginWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleGitLogin = () => {
+    loginWithGithub(gitHubProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -124,28 +154,29 @@ const Register = () => {
               </Link>
             </p>
             <div className="divider">OR</div>
-            <div>
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center w-full h-12 px-6 mb-5 font-medium tracking-wide btn btn-outline btn-info hover:btn-info"
-              >
-                <FaGoogle /> <span className="ml-3"> Login with Google</span>
-              </button>
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center w-full h-12 px-6 mb-5 font-medium tracking-wide btn btn-outline btn-primary hover:btn-primary"
-              >
-                <FaFacebook />{" "}
-                <span className="ml-3"> Login with Facebook </span>
-              </button>
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide btn btn-outline  hover:btn-active"
-              >
-                <FaGithub /> <span className="ml-3"> Login with Github </span>
-              </button>
-            </div>
           </form>
+          <div>
+            <button
+              onClick={handleGoogleLogIn}
+              type="submit"
+              className="inline-flex items-center justify-center w-full h-12 px-6 mb-5 font-medium tracking-wide btn btn-outline btn-info hover:btn-info"
+            >
+              <FaGoogle /> <span className="ml-3"> Login with Google</span>
+            </button>
+            <button
+              type="submit"
+              className="inline-flex items-center justify-center w-full h-12 px-6 mb-5 font-medium tracking-wide btn btn-outline btn-primary hover:btn-primary"
+            >
+              <FaFacebook /> <span className="ml-3"> Login with Facebook </span>
+            </button>
+            <button
+              onClick={handleGitLogin}
+              type="submit"
+              className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide btn btn-outline  hover:btn-active"
+            >
+              <FaGithub /> <span className="ml-3"> Login with Github </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

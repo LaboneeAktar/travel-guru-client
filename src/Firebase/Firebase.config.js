@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_apiKey,
-  authDomain: process.env.REACT_APP__authDomain,
-  projectId: process.env.REACT_APP__projectId,
-  storageBucket: process.env.REACT_APP__storageBucket,
-  messagingSenderId: process.env.REACT_APP__messagingSenderId,
-  appId: process.env.REACT_APP__appId,
+  apiKey: "AIzaSyCBu3C5t7eamGooAhEETpu6E0y1Xv5fSOI",
+  authDomain: "travel-guru-4aa0a.firebaseapp.com",
+  projectId: "travel-guru-4aa0a",
+  storageBucket: "travel-guru-4aa0a.appspot.com",
+  messagingSenderId: "846026979474",
+  appId: "1:846026979474:web:80ee23577862e262b98e4b",
 };
 
 // Initialize Firebase

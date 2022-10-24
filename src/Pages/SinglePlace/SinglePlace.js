@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import backgroundImage from "../../assets/Rectangle 1.png";
 // import { AuthContext } from "../../contexts/AuthProvider";
 import DatePickerForm from "../DatePicker/DatePicker";
@@ -102,12 +102,14 @@ const SinglePlace = () => {
                       <DatePickerForm></DatePickerForm>
                     </div>
                     <div className="mt-4 mb-2 sm:mb-4">
-                      <button
-                        type="submit"
-                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide btn btn-primary transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:btn-accent"
-                      >
-                        Book Now
-                      </button>
+                      <Link to="/hotels">
+                        <button
+                          type="submit"
+                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide btn btn-primary transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:btn-accent"
+                        >
+                          Book Now
+                        </button>
+                      </Link>
                     </div>
                   </form>
                 </div>

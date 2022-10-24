@@ -5,7 +5,7 @@ import { AuthContext } from "../../../contexts/AuthProvider";
 import "./Header.css";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   // console.log(user);
   return (
     <div>
@@ -100,9 +100,17 @@ const Header = () => {
           </div>
           <div className="navbar-end">
             {user && user.uid ? (
-              <button className="btn btn-outline btn-primary text-normal px-7 normal-case text-base hidden lg:block">
-                Logout
-              </button>
+              <div className="flex justify-between">
+                <h1 className="mt-2 mr-3 text-lg lg:block hidden">
+                  {user?.displayName}
+                </h1>
+                <button
+                  onClick={logOut}
+                  className="btn btn-outline btn-primary text-normal px-7 normal-case text-base hidden lg:block"
+                >
+                  Logout
+                </button>{" "}
+              </div>
             ) : (
               <>
                 <Link to="/register">
