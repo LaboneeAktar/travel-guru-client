@@ -1,10 +1,12 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import backgroundImage from "../../assets/Rectangle 1.png";
+// import { AuthContext } from "../../contexts/AuthProvider";
 import DatePickerForm from "../DatePicker/DatePicker";
 
 const SinglePlace = () => {
   const place = useLoaderData();
+  // const { user } = useContext(AuthContext);
   console.log(place);
   return (
     <div>

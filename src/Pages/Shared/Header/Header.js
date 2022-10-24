@@ -1,12 +1,15 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/logo.png";
+import { AuthContext } from "../../../contexts/AuthProvider";
 import "./Header.css";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+  // console.log(user);
   return (
     <div>
-      <div className=" bg-transparent">
+      <div className=" bg-cyan-300">
         <div className="navbar px-20 py-5">
           <div className="navbar-start">
             <div className="dropdown">
@@ -44,6 +47,10 @@ const Header = () => {
                 <li tabIndex={0}></li>
                 <li>
                   <NavLink to="/contact">Contact</NavLink>
+                </li>
+                <li tabIndex={0}></li>
+                <li>
+                  <NavLink to="/register">Register</NavLink>
                 </li>
                 <li tabIndex={0}></li>
                 <li>
@@ -92,10 +99,25 @@ const Header = () => {
             </div>
           </div>
           <div className="navbar-end">
-            <button className="btn btn-outline btn-accent text-normal mx-5 px-7  normal-case text-base">
-              {" "}
-              Login
-            </button>
+            {user && user.uid ? (
+              <button className="btn btn-outline btn-primary text-normal px-7 normal-case text-base hidden lg:block">
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link to="/register">
+                  <button className="btn btn-outline btn-primary text-normal px-7 normal-case text-base hidden lg:block">
+                    Register
+                  </button>
+                </Link>
+                <Link to="/login">
+                  <button className="btn btn-outline btn-primary text-normal mx-5 px-7  normal-case text-base hidden lg:block">
+                    Login
+                  </button>
+                </Link>
+              </>
+            )}
+
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
